@@ -1,5 +1,4 @@
 
-```
 # Movie Recommendation System (TF-IDF)
 
 Welcome to the **Movie Recommendation System** project! This project uses a TF-IDF model to recommend movies based on textual descriptions. Below, you'll find all the information you need to set up and run the project.
