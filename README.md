@@ -129,7 +129,7 @@ Open your web browser and go to `http://127.0.0.1:5000`.
 
 2. Enter a description or keywords related to the type of movie you're looking for.
 
-3. Click the "Recommend" button.
+3. Click the "Search" button.
 
 4. The system will display a list of recommended movies based on the provided description.
 
@@ -173,7 +173,7 @@ $$ \text{TF}(t, d) = \frac{\text{Number of times term } t \text{ appears in docu
 
   
 
-The inverse document frequency \( \text{IDF}(t, D) \) is calculated as:
+The inverse document frequency ${IDF}(t, D)$ is calculated as:
 
 $$ \text{IDF}(t, D) = \log \left( \frac{N}{|\{d \in D : t \in d\}|} \right) $$
 
