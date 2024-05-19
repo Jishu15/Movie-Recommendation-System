@@ -1,5 +1,5 @@
 
-
+```
 # Movie Recommendation System (TF-IDF)
 
 Welcome to the **Movie Recommendation System** project! This project uses a TF-IDF model to recommend movies based on textual descriptions. Below, you'll find all the information you need to set up and run the project.
@@ -116,3 +116,4 @@ D --> E[Movie Recommendations]
 This project is developed by [Sibasish Dey](https://github.com/Jishu15) and [Riddhiman Dutta](https://github.com/cdnjmusic). Contributions are welcome! Please fork the repository and create a pull request with your enhancements.
 
 Feel free to reach out with any questions or feedback. Enjoy exploring and happy movie watching!
+```
