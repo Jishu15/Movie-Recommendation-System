@@ -1,2 +1,4 @@
 .srcenv/
 srcenv/
+
+node_modules/
