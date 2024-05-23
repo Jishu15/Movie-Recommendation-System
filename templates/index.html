@@ -17,6 +17,7 @@
 
         {% if recommendations %}
         <h2 class="text-xl mt-8">Recommended Movies</h2>
+        <p class="mt-2 text-sm text-gray-400">Accuracy: {{ accuracy }}%</p>
         <ul class="mt-4">
             {% for movie in recommendations %}
             <li class="bg-gray-800 p-4 rounded-lg mb-4">

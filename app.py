@@ -2,6 +2,7 @@ from flask import Flask, request, render_template
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
+import numpy as np
 
 app = Flask(__name__)
 
@@ -35,7 +36,13 @@ def recommend():
         related_docs_indices = cosine_similarities.argsort()[:-6:-1]
         recommendations = movies.iloc[related_docs_indices]
         
-        return render_template('index.html', recommendations=recommendations.to_dict('records'))
+        # Calculate the average cosine similarity score for the recommendations
+        avg_score = cosine_similarities[related_docs_indices].mean()
+        
+        # Normalize the cosine similarity score to a 0-100 scale
+        norm_avg_score = np.interp(avg_score, (cosine_similarities.min(), cosine_similarities.max()), (0, 100))
+        
+        return render_template('index.html', recommendations=recommendations.to_dict('records'), accuracy=round(norm_avg_score, 2))
     except KeyError as e:
         app.logger.error(f"KeyError: {e}")
         return "There was an error processing your request.", 400
