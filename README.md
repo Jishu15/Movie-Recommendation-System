@@ -1,5 +1,3 @@
-Certainly! Here's the updated README to include both the TF-IDF and LSI models, along with the combined architecture.
-
 ---
 
 # Movie Recommendation System (TF-IDF and LSI)
@@ -112,7 +110,7 @@ Where:
 
 #### What is LSI?
 
-Latent Semantic Indexing (LSI) is a technique in natural language processing of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms. LSI uses singular value decomposition (SVD) to reduce the dimensions of the term-document matrix, capturing the underlying structure in the data.
+Latent Semantic Indexing (LSI) is a technique in natural language processing for analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms. LSI uses singular value decomposition (SVD) to reduce the dimensions of the term-document matrix, capturing the underlying structure in the data.
 
 #### Mathematical Formulation
 
@@ -129,24 +127,45 @@ By truncating \( \Sigma \) to the top k singular values, we obtain a reduced-ran
 
 ## Architecture
 
-The architecture of the Movie Recommendation System is depicted below:
+The architecture of the Movie Recommendation System focuses on the data flow and the operations of the TF-IDF and LSI models:
 
 ```mermaid
-graph LR
-A[User] --> B[Web Interface]
-B --> C[Flask App]
-C --> D1[TF-IDF Model]
-C --> D2[LSI Model]
-D1 --> E[Movie Recommendations]
-D2 --> E[Movie Recommendations]
+graph TD
+  A[Movie Dataset] -->|Load Data| B[Data Preprocessing]
+  B -->|Create Combined Text Column| C[TF-IDF Vectorizer]
+  B -->|Create Combined Text Column| D[LSI Model]
+
+  subgraph TF-IDF
+    C -->|Transform Text Data| E[TF-IDF Matrix]
+    E -->|User Input| F[TF-IDF Vectorizer]
+    F -->|Compute Similarity| G[Cosine Similarity]
+    G -->|Top Recommendations| H[TF-IDF Recommendations]
+  end
+
+  subgraph LSI
+    D -->|Transform Text Data| I[Term-Document Matrix]
+    I -->|SVD| J[LSI Matrix]
+    J -->|User Input| K[LSI Vectorizer]
+    K -->|Compute Similarity| L[Cosine Similarity]
+    L -->|Top Recommendations| M[LSI Recommendations]
+  end
+
+  H --> N[Final Recommendations]
+  M --> N
 ```
 
-1. **User**: Interacts with the web interface.
-2. **Web Interface**: Captures user input and displays recommendations.
-3. **Flask App**: Processes the input and communicates with both the TF-IDF and LSI models.
-4. **TF-IDF Model**: Computes similarity scores based on the input and movie descriptions.
-5. **LSI Model**: Computes similarity scores based on the input and latent semantic analysis.
-6. **Movie Recommendations**: Generated list of recommended movies.
+1. **Movie Dataset**: Contains movie information.
+2. **Data Preprocessing**: Prepares the data, creating a combined text column for each movie.
+3. **TF-IDF Vectorizer**: Converts the text data into a TF-IDF matrix.
+4. **LSI Model**: Converts the text data into a term-document matrix and applies SVD to reduce dimensions.
+5. **TF-IDF Matrix**: Represents the importance of terms in each document.
+6. **LSI Matrix**: Represents the reduced-rank approximation capturing the significant relationships.
+7. **User Input**: User-provided description or keywords.
+8. **TF-IDF Vectorizer**: Transforms the user input into the TF-IDF space.
+9. **LSI Vectorizer**: Transforms the user input into the LSI space.
+10. **Cosine Similarity**: Computes similarity scores between the user input and the movies in the dataset.
+11. **Top Recommendations**: Generates the top movie recommendations based on similarity scores.
+12. **Final Recommendations**: Combines the top recommendations from both models.
 
 ## Credits
 
