@@ -37,22 +37,39 @@
                     </defs>
                 </svg>
             </button>
-        </form>        
+        </form>
 
-        {% if recommendations %}
-        <h2>Recommended Movies</h2>
-        <p>Accuracy: {{ accuracy }}%</p>
-        <ul> 
-            {% for movie in recommendations %}
-            <li>
-                <strong>{{ movie['movie_title'] }}</strong>
-                <p>Genre: {{ movie['genres'] }}</p>
-                <p>Directed by: {{ movie['director_name'] }}</p>
-                <p>Starring: {{ movie['actor_1_name'] }}, {{ movie['actor_2_name'] }}, {{ movie['actor_3_name'] }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+        <div class="results">
+            <div class="tf-idf-results">
+                <h2>TF-IDF Results</h2>
+                <p>Accuracy: {{ tf_idf_accuracy }}%</p>
+                <ul>
+                    {% for movie in tf_idf_recommendations %}
+                    <li>
+                        <strong>{{ movie['movie_title'] }}</strong>
+                        <p>Genre: {{ movie['genres'] }}</p>
+                        <p>Directed by: {{ movie['director_name'] }}</p>
+                        <p>Starring: {{ movie['actor_1_name'] }}, {{ movie['actor_2_name'] }}, {{ movie['actor_3_name'] }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="lsi-results">
+                <h2>LSI Results</h2>
+                <p>Accuracy: {{ lsi_accuracy }}%</p>
+                <ul>
+                    {% for movie in lsi_recommendations %}
+                    <li>
+                        <strong>{{ movie['movie_title'] }}</strong>
+                        <p>Genre: {{ movie['genres'] }}</p>
+                        <p>Directed by: {{ movie['director_name'] }}</p>
+                        <p>Starring: {{ movie['actor_1_name'] }}, {{ movie['actor_2_name'] }}, {{ movie['actor_3_name'] }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>
